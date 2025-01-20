@@ -15,9 +15,10 @@ import {
 import { Badge, BadgeText, BadgeIcon } from "@/components/ui/badge";
 import { CloseIcon, CheckIcon, InfoIcon } from "@/components/ui/icon";
 import { ScrollView } from "@/components/ui/scroll-view";
+import { examples } from "@/components/docs/examples/table";
 import { Text } from "@/components/ui/text";
-
-export const NewsAndFeed = () => {
+import { SafeAreaView } from 'react-native-safe-area-context';
+export const NewAndFeed = () => {
   const nativeProp = Platform.OS !== "web" ? { useRNView: true } : {};
 
   return (
@@ -95,7 +96,7 @@ export const NewsAndFeed = () => {
         </Box>
         <Box className="p-5 border border-outline-100 rounded-lg my-2.5 gap-5 min-h-[200px] max-w-[600px] lg:min-w-[700px] w-full self-center">
           <Text className="border-b border-outline-200 pb-2 lg:pb-3 lg:text-xl text-base">
-            Table with caption
+            Default
           </Text>
           <Center className="flex-1">
             <Box className="rounded-lg overflow-hidden w-full">
@@ -161,7 +162,26 @@ export const NewsAndFeed = () => {
             </Box>
           </Center>
         </Box>
+
+        {examples?.length > 0 &&
+          examples.map((Example: any, index: any) => {
+            const isFunctionComponent = typeof Example.Code === "function"; // Check if Code is a function
+            return (
+              <Box
+                key={index}
+                className="p-5 border border-outline-100 rounded-lg my-2.5 gap-5 min-h-[200px] max-w-[600px] lg:min-w-[700px] w-full self-center"
+              >
+                <Text className="border-b border-outline-200 pb-2 lg:pb-3 lg:text-xl text-base">
+                  {Example.name}
+                </Text>
+                <Center className="flex-1">
+                  {isFunctionComponent ? <Example.Code /> : Example.Code}
+                </Center>
+              </Box>
+            );
+          })}
       </ScrollView>
     </SafeAreaView>
   );
 };
+
