@@ -48,7 +48,7 @@ const index = () => {
             router.push("news-feed/news-and-feed");
           }}
         >
-          <ButtonText>News feed</ButtonText>
+          <ButtonText>Gluestack UI Table</ButtonText>
         </Button>
         <Button
           onPress={() => {
